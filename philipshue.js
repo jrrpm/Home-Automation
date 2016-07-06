@@ -5,6 +5,8 @@ var hue = new function() {
     var tUser = "xMjcTqqAixNzXCaY51G6IUhVyB1lCeam-JppPTkL";
     var aUrl = "http://192.168.1.11/api/";
     var eLog = false;
+    var colorMedium = 13109;
+    var colorHigh = 33016;
     var lightsID = [1,2,3];
 
     function sendRequest(command, params)
@@ -18,7 +20,7 @@ var hue = new function() {
                 if (err) console.log(err);
                 else console.log(response.body);
             }
-      });  
+      });
     }
 
     this.allLightsOff = function() {
@@ -34,18 +36,18 @@ var hue = new function() {
         var json = {
             "on": true,
             "bri": 254,
-            "hue": 11483,
+            "hue": colorHigh,
             "sat": 254
         };
         for (var i in lightsID) sendRequest("/lights/"+lightsID[i]+"/state", json);
     }
-    
+
     this.allLightsBright = function(value) {
         if (eLog) console.log("philips bright:" + value);
         var json = {
             "on": true,
             "bri": value,
-            "hue": 11483,
+            "hue": colorMedium,
             "sat": 254
         };
         for (var i in lightsID) sendRequest("/lights/"+lightsID[i]+"/state", json);
