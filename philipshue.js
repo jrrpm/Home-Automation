@@ -51,6 +51,10 @@ var hue = new function() {
             "sat": 254
         };
         for (var i in lightsID) sendRequest("/lights/"+lightsID[i]+"/state", json);
+        if (value<100) {
+            json = { "on": false };
+            sendRequest("/lights/2/state", json);
+        }
     }
 
 };
